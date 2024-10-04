@@ -38,9 +38,12 @@ public class SqlGateWayServlet extends HttpServlet {
             Class.forName("org.postgresql.Driver");
 
 // Get a connection to the PostgreSQL database
-            String dbURL = "jdbc:postgresql://dpg-crvru2tds78s738bivrg-a.singapore-postgres.render.com:5432/pg17";
-            String username = "pg17_user"; // Adjust if needed
-            String password = "8a5VBRYEERYztwqYgf3tNE3SaXsds5JE"; // Your PostgreSQL password
+//            String dbURL = "jdbc:postgresql://dpg-crvru2tds78s738bivrg-a.singapore-postgres.render.com:5432/pg17";
+//            String username = "pg17_user"; // Adjust if needed
+//            String password = "8a5VBRYEERYztwqYgf3tNE3SaXsds5JE"; // Your PostgreSQL password
+            String dbURL = System.getenv("DATABASE_URL");
+            String username = System.getenv("DATABASE_USER");
+            String password = System.getenv("DATABASE_PASSWORD");
             Connection connection = DriverManager.getConnection(dbURL, username, password);
 
 

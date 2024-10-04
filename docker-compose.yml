@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - DATABASE_URL=jdbc:postgresql://dpg-crvru2tds78s738bivrg-a.singapore-postgres.render.com:5432/pg17
+      - DATABASE_USER=pg17_user
+      - DATABASE_PASSWORD=8a5VBRYEERYztwqYgf3tNE3SaXsds5JE
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: pg17
+      POSTGRES_USER: pg17_user
+      POSTGRES_PASSWORD: 8a5VBRYEERYztwqYgf3tNE3SaXsds5JE
+    ports:
+      - "5432:5432"
