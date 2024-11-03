@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/ch12_ex1_sqlGateway_sol">
+    <Resource name="jdbc/murach" auth="Container"
+              driverClassName="com.mysql.cj.jdbc.Driver"
+              url="jdbc:mysql://mysql-1468c216-nguyensanghuypy-6098.k.aivencloud.com:11476/dbdemo"
+              username="avnadmin" password="AVNS_h6D5M-cyVTLDvUQmLLc"
+              maxActive="100" maxIdle="30" maxWait="10000"
+              logAbandoned="true" removeAbandoned="true"
+              removeAbandonedTimeout="60" type="javax.sql.DataSource" />
+</Context>

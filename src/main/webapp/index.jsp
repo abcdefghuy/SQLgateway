@@ -9,7 +9,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:if test="${sqlStatement == null}">
-    <c:set var="sqlStatement" value="select * from usertest" />
+    <c:set var="sqlStatement" value="select * from USER" />
 </c:if>
 
 <h1>The SQL Gateway</h1>

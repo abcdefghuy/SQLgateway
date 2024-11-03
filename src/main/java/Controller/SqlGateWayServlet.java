@@ -18,9 +18,9 @@ public class SqlGateWayServlet extends HttpServlet {
                           HttpServletResponse response)
             throws ServletException, IOException {
 
-        // get a connection
-//        ConnectionPool pool = ConnectionPool.getInstance();
-//        Connection connection = pool.getConnection();
+//         get a connection
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
 
         String sqlStatement = request.getParameter("sqlStatement");
         String sqlResult = "";
@@ -35,16 +35,16 @@ public class SqlGateWayServlet extends HttpServlet {
 //                    dbURL, username, password);
 //            postgrestSql
             // Load the PostgreSQL JDBC driver
-            Class.forName("org.postgresql.Driver");
-
-// Get a connection to the PostgreSQL database
+//            Class.forName("org.postgresql.Driver");
+//
+//// Get a connection to the PostgreSQL database
 //            String dbURL = "jdbc:postgresql://dpg-crvru2tds78s738bivrg-a.singapore-postgres.render.com:5432/pg17";
 //            String username = "pg17_user"; // Adjust if needed
 //            String password = "8a5VBRYEERYztwqYgf3tNE3SaXsds5JE"; // Your PostgreSQL password
-            String dbURL = System.getenv("DATABASE_URL");
-            String username = System.getenv("DATABASE_USER");
-            String password = System.getenv("DATABASE_PASSWORD");
-            Connection connection = DriverManager.getConnection(dbURL, username, password);
+////            String dbURL = System.getenv("DATABASE_URL");
+////            String username = System.getenv("DATABASE_USER");
+////            String password = System.getenv("DATABASE_PASSWORD");
+//            Connection connection = DriverManager.getConnection(dbURL, username, password);
 
 
             // create a statement
@@ -74,13 +74,16 @@ public class SqlGateWayServlet extends HttpServlet {
             }
             statement.close();
             connection.close();
-        } catch (ClassNotFoundException e) {
-            sqlResult = "<p>Error loading the database driver: <br>"
-                    + e.getMessage() + "</p>";
+//        } catch (ClassNotFoundException e) {
+//            sqlResult = "<p>Error loading the database driver: <br>"
+//                    + e.getMessage() + "</p>";
         } catch (SQLException e) {
             sqlResult = "<p>Error executing the SQL statement: <br>"
                     + e.getMessage() + "</p>";
         }
+     finally {
+        pool.freeConnection(connection);
+    }
 
         HttpSession session = request.getSession();
         session.setAttribute("sqlResult", sqlResult);

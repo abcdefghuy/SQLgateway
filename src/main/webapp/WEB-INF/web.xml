@@ -12,5 +12,4 @@
         <servlet-name>SqlGatewayServlet</servlet-name>
         <url-pattern>/sqlGateway</url-pattern>
     </servlet-mapping>
-
 </web-app>
